@@ -1,12 +1,12 @@
 package com.wqh.boot.domain.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.Alias;
 
 @Data
 @Alias("User")
-@EqualsAndHashCode(callSuper = false)
+@TableName("ge_user")
 public class User extends BaseEntity {
 
     private String username;
