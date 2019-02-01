@@ -1,11 +1,16 @@
 package com.wqh.boot;
 
-import java.nio.charset.Charset;
+import static java.util.Comparator.comparing;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
 
 @Slf4j
@@ -14,23 +19,31 @@ public class App {
     @Test
     public void test_system_properties() {
         Properties properties = System.getProperties();
-        properties.list(System.out);
+        Map<Object, Object> map = new HashMap<>();
+        properties.forEach(map::put);
+        List<Map.Entry<Object, Object>> entries = map.entrySet().stream()
+                .filter(entry -> !Objects.isNull(entry))
+                .sorted(comparing(entry -> (String) entry.getKey())).collect(Collectors.toList());
+        log.info(entries.toString());
+
     }
 
     @Test
-    public void test_base64_md5() {
-
-        String str =
-                "{\"orderId\":\"3034692486604724230\",\"internalOrderId\":\"J18122910000447\",\"internalOrderTime\":1546069018201,\"customerCode\":\"S121314\",\"mapType\":\"1\",\"consigneeName\":\"j**\",\"consigneeMobile\":\"[13020294464,986]\",\"consigneeAddress\":\"华东政法大学长宁校区上海市长宁区万航渡路1575号\",\"consigneeLongitude\":121.41733,\"consigneeLatitude\":31.22643,\"orderAmount\":0.03,\"orderWeight\":2.0,\"itemPrice\":\"0.02,0.0,0.01,\",\"itemWeight\":\"1.0,1.0,\",\"itemName\":\"宫保鸡丁-9,宫保鸡丁-0,餐盒,\",\"itemNum\":\"1,1,1,\",\"daySn\":\"7\",\"dataSource\":\"ele\",\"timeliness\":\"immediate\"}";
-        String encodeStr = base64Md5Encode(str + "sphhQMSbc#itemd7Z6YUgN0XkeaYpHZ1");
-        //hbT8Y4HJRMcZD0j3zuL/vw==
-        log.info(encodeStr);
-    }
-
-    private String base64Md5Encode(String str) {
-        String digest1 = DigestUtils.md5Hex(str.getBytes());
-        ;
-        return Base64.encodeBase64String(digest1.getBytes(Charset.forName("utf8")));
+    public void test_putIfAbsent() {
+        Map<String, String> map = new HashMap<>();
+        map.computeIfAbsent("key", k -> k + "1");
+        log.info(map.get("key"));
 
     }
+
+    @Test
+    public void test_date() {
+        Date createdTime = new Date(1548474112426L);
+        log.info(createdTime.toString());
+        Date date = new Date(1548474113866L);
+        log.info(date.toString());
+
+
+    }
+
 }

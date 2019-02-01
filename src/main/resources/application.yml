@@ -15,7 +15,6 @@ mybatis-plus:
       db-type: mysql
       id-type: auto
   configuration:
-    map-underscore-to-camel-case: true
     cache-enabled: false
 
 
