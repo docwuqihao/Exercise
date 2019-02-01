@@ -1,9 +1,9 @@
 package com.wqh.boot.dao;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.wqh.boot.vo.Order;
+import com.wqh.boot.domain.entity.Order;
+import com.wqh.boot.domain.so.OrderSO;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderDao extends BaseMapper<Order> {
+public interface OrderDao extends BaseDao<Order, OrderSO> {
 }

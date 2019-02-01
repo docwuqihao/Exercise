@@ -1,17 +1,13 @@
 package com.wqh.boot.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wqh.boot.dao.OrderDao;
+import com.wqh.boot.domain.entity.Order;
+import com.wqh.boot.domain.so.OrderSO;
 import com.wqh.boot.service.OrderService;
-import com.wqh.boot.vo.Order;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements OrderService {
-
-    @Autowired
-    private OrderDao orderDao;
-
+public class OrderServiceImpl extends BaseServiceImpl<OrderDao, Order, OrderSO>
+        implements OrderService {
 
 }

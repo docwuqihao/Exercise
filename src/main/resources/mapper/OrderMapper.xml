@@ -3,5 +3,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wqh.boot.dao.OrderDao">
 
+    <sql id="base_where_clause">
+        <where>
+            <if test="id != null">
+                t.id = #{id}
+            </if>
+        </where>
+    </sql>
 
+    <select id="searchVOList" resultType="Order">
+        select * from ge_order t
+        <include refid="base_where_clause"/>
+    </select>
 </mapper>

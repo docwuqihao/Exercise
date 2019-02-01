@@ -1,16 +1,13 @@
-package com.wqh.boot.vo;
+package com.wqh.boot.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
 @Data
-@Alias("Order")
 @TableName("ge_order")
-public class Order {
+@Alias("Order")
+public class Order extends BaseEntity {
 
-
-    private int id;
-
-    private String orderId;
+    private String orderNo;
 }
