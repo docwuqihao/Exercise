@@ -24,4 +24,9 @@ public class AuthController {
     public String hello() {
         return "hello";
     }
+
+    @RequestMapping("/ind2")
+    public String ind() {
+        return "me";
+    }
 }

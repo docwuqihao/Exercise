@@ -38,11 +38,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/hello").authenticated()
-                .antMatchers("/login").permitAll().and()
-                .formLogin().loginPage("/login").usernameParameter("username").passwordParameter(
-                "password").successForwardUrl("/hello").permitAll().and()
-                .logout().logoutSuccessUrl("/login").invalidateHttpSession(Boolean.TRUE).permitAll()
-                .and().httpBasic();
+        http.csrf().disable()
+                .authorizeRequests().antMatchers("/hello").authenticated()
+                .antMatchers("/login").permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .successForwardUrl("/hello").permitAll()
+                .and()
+                .logout().logoutSuccessUrl("/login").permitAll();
     }
 }
