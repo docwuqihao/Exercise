@@ -21,7 +21,8 @@ mybatis-plus:
   configuration:
     cache-enabled: false
 
-
 server:
   port: 8080
+  servlet:
+    context-path: /boot
 

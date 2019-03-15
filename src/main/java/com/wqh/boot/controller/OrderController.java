@@ -5,7 +5,6 @@ import com.wqh.boot.domain.so.OrderSO;
 import com.wqh.boot.domain.vo.PackVO;
 import com.wqh.boot.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +27,6 @@ public class OrderController {
     }
 
     @PostMapping("/save")
-    @Transactional
     public PackVO<Order> add(@RequestBody Order order) {
         PackVO<Order> packVO = new PackVO<>();
         if (orderService.save(order)) {
