@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.94.130:3306/boot?autoReconnect=true&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    platform: mysql
+  thymeleaf:
+    mode: HTML
+    cache: false
+
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: com.example.demo.domain.entity
+  global-config:
+    db-config:
+      db-type: mysql
+      id-type: auto
+  configuration:
+    cache-enabled: false
+
+server:
+  port: 8080
+  servlet:
+    context-path: /boot
+
