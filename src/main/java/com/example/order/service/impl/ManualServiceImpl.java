@@ -24,4 +24,9 @@ public class ManualServiceImpl {
         order.setOrderNo("i" + now.getTime());
         orderService.save(order);
     }
+
+    @Transactional
+    public Order getOrder(String id) {
+        return orderService.getById(id);
+    }
 }

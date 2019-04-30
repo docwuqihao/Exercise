@@ -5,6 +5,7 @@ import static java.util.Comparator.comparing;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -98,6 +99,9 @@ public class App {
     public void test_date() {
         Date date = new Date(2019, 4, 3, 0, 0, 0);
         System.out.println(date.getTime());
+
+        ArrayList<Object> list = new ArrayList<>();
+        System.out.println(list.get(0));
     }
 
 }

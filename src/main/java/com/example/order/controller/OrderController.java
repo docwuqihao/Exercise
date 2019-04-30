@@ -8,7 +8,6 @@ import com.example.order.domain.vo.PackVO;
 import com.example.order.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,11 +24,9 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("/search")
-    @Transactional(timeout = 2)
-    public PackVO<Order> search(@RequestBody OrderSO so) throws InterruptedException {
+    public PackVO<Order> search(@RequestBody OrderSO so) {
         PackVO<Order> packVO = new PackVO<>();
         packVO.setVoList(orderService.searchVOList(so));
-        Thread.sleep(3000);
         return packVO;
     }
 
@@ -61,5 +58,13 @@ public class OrderController {
         orderService.sendOrder(order);
         return packVO;
     }
+
+    @PostMapping("/get")
+    public PackVO<Order> get(@RequestParam String id) throws Exception {
+        PackVO<Order> packVO = new PackVO<>();
+        orderService.mybatisCache(id);
+        return packVO;
+    }
+
 
 }

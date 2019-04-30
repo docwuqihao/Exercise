@@ -8,6 +8,7 @@
         <bean id="testBean" class="com.example.topic.spring.bean.TestBean"/>
     </beans>
     <beans profile="prod">
-        <bean id="testBeanProd" class="com.example.topic.spring.bean.TestBean"/>
+        <bean id="testBeanProd"
+              class="com.example.topic.spring.bean.TestBean"/>
     </beans>
 </beans>
