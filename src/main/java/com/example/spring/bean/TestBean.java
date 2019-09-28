@@ -1,4 +1,4 @@
-package com.example.topic.spring.bean;
+package com.example.spring.bean;
 
 public class TestBean {
 

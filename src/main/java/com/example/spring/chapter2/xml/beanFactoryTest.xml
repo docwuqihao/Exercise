@@ -5,10 +5,10 @@
     http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
     <beans profile="dev">
-        <bean id="testBean" class="com.example.topic.spring.bean.TestBean"/>
+        <bean id="testBean" class="com.example.spring.bean.TestBean"/>
     </beans>
     <beans profile="prod">
         <bean id="testBeanProd"
-              class="com.example.topic.spring.bean.TestBean"/>
+              class="com.example.spring.bean.TestBean"/>
     </beans>
 </beans>

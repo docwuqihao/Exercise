@@ -1,0 +1,14 @@
+<beans xmlns:myname="http://www.example.com/schema/user"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.example.com/schema/user http://www.example.com/schema/user.xsd
+http://www.w3.org/2001/XMLSchema-instance http://www.w3.org/2001/XMLSchema-instance.xsd">
+
+
+    <myname:user id="1" name="zhangsan" age="12"/>
+    <myname:user id="1" name="zhangsan2" age="123"/>
+
+
+</beans>
