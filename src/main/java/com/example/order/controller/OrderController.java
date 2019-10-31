@@ -1,19 +1,15 @@
 package com.example.order.controller;
 
-import java.util.Date;
-
+import com.example.cola.ExtensionRepository;
 import com.example.order.domain.entity.Order;
 import com.example.order.domain.so.OrderSO;
 import com.example.order.domain.vo.PackVO;
 import com.example.order.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 @RequestMapping("/order")
@@ -22,6 +18,9 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private ExtensionRepository extensionRepository;
 
     @GetMapping("/search")
     public PackVO<Order> search(@RequestBody OrderSO so) {
@@ -34,14 +33,9 @@ public class OrderController {
     public PackVO<Order> add(@RequestBody Order order) throws Exception {
         PackVO<Order> packVO = new PackVO<>();
         order.setCreatedTime(new Date());
-        if (orderService.save(order)) {
-            packVO.setVo(order);
-        }
-        else {
-            packVO.setSuccess(Boolean.FALSE);
-        }
+
+
         log.info("Thread:{},{}", Thread.currentThread().getName(), order);
-        orderService.sendOrder(order);
         return packVO;
     }
 

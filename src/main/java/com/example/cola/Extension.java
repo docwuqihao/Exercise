@@ -5,25 +5,21 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Alibaba.com.
  */
-package com.example.topic.cola;
+package com.example.cola;
 
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.*;
 
-/**
- * Extension
- *
- * @author fulan.zjf 2017-11-05
- */
+
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Component
 public @interface Extension {
-    String bizId() default BizScenario.DEFAULT_Country;
+    String country() default BizScenario.DEFAULT_COUNTRY;
 
-    String useCase() default BizScenario.DEFAULT_BIZ_CODE;
+    String bizCode() default BizScenario.DEFAULT_BIZ_CODE;
 
-    String scenario() default BizScenario.DEFAULT_POINTI;
+    int order() default 0;
 }
