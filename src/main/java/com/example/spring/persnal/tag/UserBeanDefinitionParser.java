@@ -25,6 +25,11 @@ public class UserBeanDefinitionParser extends AbstractSingleBeanDefinitionParser
     }
 
     @Override
+    protected boolean shouldGenerateIdAsFallback() {
+        return true;
+    }
+
+    @Override
     protected Class<?> getBeanClass(Element element) {
         return User.class;
     }
