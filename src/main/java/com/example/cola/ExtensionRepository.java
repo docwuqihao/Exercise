@@ -19,21 +19,25 @@ public class ExtensionRepository implements ApplicationContextAware {
 
 
     public void putExtension(String key, ExtensionPointI pointI) {
-        List<ExtensionPointI> pointIList = EXTENSION_REPO.getOrDefault(key, new ArrayList<>());
-        pointIList.add(pointI);
+        List<ExtensionPointI> pointIS = EXTENSION_REPO.get(key);
+        if (pointIS == null) {
+            pointIS = new ArrayList<>();
+            pointIS.add(pointI);
+            EXTENSION_REPO.put(key, pointIS);
+        } else {
+            pointIS.add(pointI);
+        }
     }
 
 
     public <T> void execute(T t) {
-        String country = ExtensionContext.get("country");
-        String bizCode = ExtensionContext.get("bizCode");
+        String country = ExtensionContext.get(Constants.COUNTRY);
+        String bizCode = ExtensionContext.get(Constants.BIZ_CODE);
         List<ExtensionPointI> extensionPoints = EXTENSION_REPO.get(country + "." + bizCode);
 
         for (ExtensionPointI extensionPoint : extensionPoints) {
-
             extensionPoint.execute(t);
         }
-
     }
 
 
@@ -45,7 +49,7 @@ public class ExtensionRepository implements ApplicationContextAware {
         beansWithAnnotationExtension.forEach((beanName, bean) -> {
             Class<?> beanClass = bean.getClass();
             Extension extension = beanClass.getAnnotation(Extension.class);
-            putExtension(extension.country() + extension.bizCode(), (ExtensionPointI) bean);
+            putExtension(extension.country() + "." + extension.bizCode(), (ExtensionPointI) bean);
 
         });
 

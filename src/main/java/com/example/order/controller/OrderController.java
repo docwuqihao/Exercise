@@ -34,6 +34,7 @@ public class OrderController {
         PackVO<Order> packVO = new PackVO<>();
         order.setCreatedTime(new Date());
 
+        extensionRepository.execute(order);
 
         log.info("Thread:{},{}", Thread.currentThread().getName(), order);
         return packVO;

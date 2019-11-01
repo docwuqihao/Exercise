@@ -1,11 +1,11 @@
 package com.example.cola;
 
 import com.example.order.domain.entity.Order;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 
 
 @Extension(country = "a", bizCode = "order", order = 2)
-@Log4j
+@Slf4j
 public class OrderCreateExtensionPointTwo implements ExtensionPointI<Order> {
 
     @Override
