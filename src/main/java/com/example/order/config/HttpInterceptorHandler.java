@@ -3,15 +3,13 @@ package com.example.order.config;
 import com.example.cola.ColaHttpInterceptorHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class WebAppConfigurer extends WebMvcConfigurationSupport {
+public class HttpInterceptorHandler implements WebMvcConfigurer {
 
     @Override
-    protected void addInterceptors(InterceptorRegistry registry) {
+    public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new ColaHttpInterceptorHandler()).addPathPatterns("/**");
-        super.addInterceptors(registry);
-
     }
 }
